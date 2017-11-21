@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/**
+  * Method to user login VIEW
+  * ===============================================================================
+ */
+Route::get('/login', ['uses' => 'Controller@fazerLogin']);
+Route::post('/login', ['as' => 'user.login','uses' => 'Controller@login']);
