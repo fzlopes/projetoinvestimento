@@ -18,7 +18,7 @@
 			<p>Acesse o sistema</p>
 
 			<label>
-				{!! Form::text('username', null, ['class' => 'input', 'placeholder' => "Usuário"])!!}
+				{!! Form::text('email', null, ['class' => 'input', 'placeholder' => "E-mail"])!!}
 			</label>
 
 			<label>

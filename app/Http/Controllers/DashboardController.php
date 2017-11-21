@@ -27,14 +27,14 @@ class DashboardController extends Controller
 
     public function index()
     {
-    	echo "Estamos na index(dashboard.";
+    	echo "Estamos na index(dashboard.)";
     }
 
     public function auth(Request $request)
     {
         $data = [
-          'email' => $request->get('username'),
-          'senha' => $request->get('password')
+          'email' => $request->get('email'),
+          'password' => $request->get('password')
         ];
 
         
