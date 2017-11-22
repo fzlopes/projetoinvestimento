@@ -28,7 +28,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-    	echo "Estamos na index(dashboard.)";
+    	return view('user.dashboard');
     }
 
     public function auth(Request $request)
