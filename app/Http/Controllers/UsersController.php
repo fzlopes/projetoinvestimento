@@ -10,7 +10,7 @@ use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
-use App\Validators\UserValidator;
+use App\Services\UserService;
 
 
 class UsersController extends Controller
@@ -24,12 +24,12 @@ class UsersController extends Controller
     /**
      * @var UserValidator
      */
-    protected $validator;
+    protected $service;
 
-    public function __construct(UserRepository $repository, UserValidator $validator)
+    public function __construct(UserRepository $repository, UserService $service)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->service    = $service;
     }
 
 
@@ -53,33 +53,19 @@ class UsersController extends Controller
     public function store(UserCreateRequest $request)
     {
 
-        try {
+        $request = $this->service->store($request->all());
+        $usuario = $request['success'] ? $request['data'] : null;
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $user = $this->repository->create($request->all());
+        session()->flash('success', [
+            'success'  => $request['success'],
+            'messages' => $request['messages'], 
+        ]);
 
-            $response = [
-                'message' => 'User created.',
-                'data'    => $user->toArray(),
-            ];
 
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        return view('user.index', [
+            'usuario' => $usuario,
+        ]);
     }
 
 
