@@ -24,12 +24,12 @@ class UserService
 		try 
 		{
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-			$usuario = $this->repository->create($data);
+			$user = $this->repository->create($data);
 
 			return [
 				'success' => true,
-				'messages' => "Usuário cadastrado",
-				'data'    => $usuario,
+				'messages' => "Usuário cadastrado.",
+				'data'    => $user,
 
 			];
 		}
@@ -42,5 +42,26 @@ class UserService
 		}
 	}
 	public function update(){}
-	public function delete(){}
+
+	public function destroy($id)
+	{
+		try 
+		{
+			$this->repository->delete($id);
+
+			return [
+				'success' => true,
+				'messages' => "Usuário removido.",
+				'data'    => null,
+
+			];
+		}
+		catch(Exception $e)
+		{
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
 }
