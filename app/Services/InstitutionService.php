@@ -1,35 +1,35 @@
-<?php
+<?php 
 
 namespace App\Services;
 
 use Prettus\Validator\Contracts\ValidatorInterface;
-use App\Repositories\UserRepository;
-use App\Validators\UserValidator;
+use App\Repositories\InstitutionRepository;
+use App\Validators\InstitutionValidator;
 use Exception;
 
-class UserService
+class InstitutionService
 {
 	private $repository;
 	private $validator;
 
-	public function __construct(UserRepository $repository, UserValidator $validator)
+
+	public function __construct(InstitutionRepository $repository, InstitutionValidator $validator)
 	{
 		$this->repository = $repository;
 		$this->validator  = $validator;
 	}
-
 
 	public function store($data)
 	{
 		try 
 		{
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-			$user = $this->repository->create($data);
+			$institution = $this->repository->create($data);
 
 			return [
-				'success' => true,
-				'messages' => "Usuário cadastrado.",
-				'data'    => $user,
+				'success'  => true,
+				'messages' => "Instituição cadastrada.",
+				'data'     => $institution,
 
 			];
 		}
@@ -41,7 +41,7 @@ class UserService
 			];
 		}
 	}
-	
+
 	public function update(){}
 
 	public function destroy($id)
@@ -52,7 +52,7 @@ class UserService
 
 			return [
 				'success' => true,
-				'messages' => "Usuário removido.",
+				'messages' => "Instituição removida.",
 				'data'    => null,
 
 			];
