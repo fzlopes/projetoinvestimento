@@ -15,12 +15,12 @@ class Group extends Model implements Transformable
     protected $fillable = ['name', 'user_id', 'institution_id'];
 
     //Usuário lider do grupo
-    public function owner 
+    public function owner() 
     {
     	return $this->belongsTo(User::class);
     }
 
-    public functions institution
+    public function institution()
     {
     	return $this->belongsTo(Institution::class);
     }

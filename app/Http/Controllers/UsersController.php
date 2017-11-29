@@ -42,7 +42,7 @@ class UsersController extends Controller
     {
        $users = $this->repository->all();
        
-       return view('user.index', compact('users'));
+       return view('users.index', compact('users'));
     }
 
     /**
@@ -55,10 +55,9 @@ class UsersController extends Controller
     public function store(UserCreateRequest $request)
     {
 
-        $request = $this->service->store($request->all());
-        $user = $request['success'] ? $request['data'] : null;
-
-
+       $request = $this->service->store($request->all());
+       $user = $request['success'] ? $request['data'] : null;
+      
         session()->flash('success', [
             'success'  => $request['success'],
             'messages' => $request['messages'], 

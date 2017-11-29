@@ -13,7 +13,7 @@
 	@endif
 
 	{!! Form::open(['route' => 'institution.store', 'method' => 'post', 'class' => 'form-padrao']) !!}
-		@include('templates.formulario.input', ['label' => 'name', 'input' => 'name' , 'attributes' => ['placeholder' => 'Nome']])
+		@include('templates.formulario.input', ['label' => 'Nome da Instituição', 'input' => 'name' , 'attributes' => ['placeholder' => 'Nome da Instituição']])
 		@include('templates.formulario.submit', ['input' => 'Cadastrar'])
 	{!! Form::close() !!}
 

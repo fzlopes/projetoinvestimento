@@ -40,9 +40,9 @@ class InstitutionsController extends Controller
      */
     public function index()
     {
-        $institutions = $this->repository->all();
+       $institutions = $this->repository->all();
        
-       return view('institution.index', compact('institutions'));
+       return view('institutions.index', compact('institutions'));
     }
 
     /**

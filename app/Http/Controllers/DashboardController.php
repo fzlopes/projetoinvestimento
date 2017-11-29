@@ -28,7 +28,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-    	return view('user.dashboard');
+    	return view('users.dashboard');
     }
 
     public function auth(Request $request)
