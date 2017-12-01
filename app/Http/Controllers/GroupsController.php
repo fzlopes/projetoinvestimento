@@ -11,6 +11,8 @@ use App\Http\Requests\GroupCreateRequest;
 use App\Http\Requests\GroupUpdateRequest;
 use App\Repositories\GroupRepository;
 use App\Services\GroupService;
+use App\Repositories\UserRepository;
+use App\Repositories\InstitutionRepository;
 
 
 class GroupsController extends Controller
@@ -26,10 +28,23 @@ class GroupsController extends Controller
      */
     protected $service;
 
-    public function __construct(GroupRepository $repository, GroupService $service)
+    /**
+     * @var UserRepository
+     */
+    protected $userRepository;
+
+    /**
+     * @var InstitutionRepository
+     */
+    protected $institutionRepository;
+
+    public function __construct(GroupRepository $repository, GroupService $service, UserRepository $userRepository, InstitutionRepository $institutionRepository)
     {
-        $this->repository = $repository;
-        $this->service    = $service;
+        $this->repository            = $repository;
+        $this->service               = $service;
+        $this->userRepository        = $userRepository;
+        $this->institutionRepository = $institutionRepository;
+
     }
 
 
@@ -41,9 +56,12 @@ class GroupsController extends Controller
     public function index()
     {
        
-        $groups = $this->repository->all();
+        $groups        = $this->repository->all();
+        $users         = $this->userRepository->selectBoxList();
+        $institutions  = $this->institutionRepository->selectBoxList();
+
        
-       return view('groups.index', compact('groups'));
+       return view('groups.index', compact('groups', 'users', 'institutions'));
     }
 
     /**
