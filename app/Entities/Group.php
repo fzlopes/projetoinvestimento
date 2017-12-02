@@ -14,8 +14,8 @@ class Group extends Model implements Transformable
 
     protected $fillable = ['name', 'user_id', 'institution_id'];
 
-    //Usuário lider do grupo
-    public function owner() 
+    //Owner - Nome do resposável do grupo do grupo
+    public function user() 
     {
     	return $this->belongsTo(User::class);
     }
