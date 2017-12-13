@@ -8,7 +8,7 @@
 
 @section('conteudo-view')
 <header>
-    <h1>{{ $institution->name }}</h1>  
+    <h1>Instituição: {{ $institution->name }}</h1>  
 </header> 
 
 @include('groups.list', ['groups' => $institution->groups])

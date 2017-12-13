@@ -98,15 +98,9 @@ class GroupsController extends Controller
     public function show($id)
     {
         $group = $this->repository->find($id);
+        $users = $this->userRepository->selectBoxList();
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $group,
-            ]);
-        }
-
-        return view('groups.show', compact('group'));
+        return view('groups.show', compact('group', 'users'));
     }
 
 
