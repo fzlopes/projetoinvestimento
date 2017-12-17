@@ -1,12 +1,7 @@
 @extends('templates.master')
 
-@section('css-view')
-@endsection
-
-@section('js-view')
-@endsection
-
 @section('conteudo-view')
+
 <header>
     <h1>Nome do grupo: {{ $group->name }}</h1> 
     <h2>Instituição: {{ $group->institution->name}} </h2> 
@@ -21,5 +16,7 @@
 		@include('templates.formulario.select', ['label' => 'Usuário', 'select' => 'user_id', 'data' => $users , 'attributes' => ['placeholder' => 'Usuário']])
 		@include('templates.formulario.submit', ['input' => 'Relacionar'])
 	{!! Form::close() !!}
+
+	@include('users.list', ['users' => $group->users])
 
 @endsection

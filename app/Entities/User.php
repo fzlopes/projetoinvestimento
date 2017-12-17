@@ -20,6 +20,13 @@ class User extends Authenticatable
         'cpf', 'name', 'phone', 'gender', 'notes', 'email', 'password', 'status', 'permission',
     ];
 
+    public function groups()
+    {
+        //Relacionamento N para N. N:N
+        return $this->belongsToMany(Group::class, 'user_groups');   
+        
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

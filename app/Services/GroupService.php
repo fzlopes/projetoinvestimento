@@ -42,6 +42,28 @@ class GroupService
 		}
 	}
 
+	public function userStore($group_id, $data)
+	{
+		try {
+			$group   = $this->repository->find($group_id);
+			$user_id = $data['user_id'];
+			
+			$group->users()->attach($user_id);
+
+			return [
+				'success' => true,
+				'messages' => "Grupo relacionado com sucesso.",
+				'data' => null,
+
+			];
+		} catch (Exception $e) {
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
+
 	public function update(){}
 
 	public function destroy($id)

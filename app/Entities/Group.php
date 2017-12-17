@@ -20,6 +20,12 @@ class Group extends Model implements Transformable
     	return $this->belongsTo(User::class);
     }
 
+    public function users()
+    {
+        //Relacionamento N para N. N:N
+        return $this->belongsToMany(User::class, 'user_groups');
+    }
+
     public function institution()
     {
     	return $this->belongsTo(Institution::class);
