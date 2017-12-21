@@ -42,7 +42,25 @@ class InstitutionService
 		}
 	}
 
-	public function update(){}
+	public function update($data, $id)
+	{
+		try {
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$institution = $this->repository->update($data, $id);
+
+			return [
+				'success' => true,
+				'messages' => "Instituição alterada.",
+				'data' => $institution,
+
+			];
+		} catch (Exception $e) {
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
 
 	public function destroy($id)
 	{

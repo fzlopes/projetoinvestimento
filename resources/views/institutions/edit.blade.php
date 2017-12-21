@@ -12,11 +12,9 @@
 		<h3>{{ session('success')['messages'] }}</h3>
 	@endif
 
-	{!! Form::open(['route' => 'institution.store', 'method' => 'post', 'class' => 'form-padrao']) !!}
+	{!! Form::model($institution, ['route' => ['institution.update', $institution->id], 'method' => 'put', 'class' => 'form-padrao']) !!}
 		@include('institutions.form-fields')
-		@include('templates.formulario.submit', ['input' => 'Cadastrar'])
+		@include('templates.formulario.submit', ['input' => 'Editar'])
 	{!! Form::close() !!}
 
-	@include('institutions.list', $institutions)
-	
 @endsection

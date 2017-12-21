@@ -1,0 +1,1 @@
+@include('templates.formulario.input', ['label' => 'Nome da Instituição', 'input' => 'name' , 'attributes' => ['placeholder' => 'Nome da Instituição']])
