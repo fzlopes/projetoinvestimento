@@ -42,7 +42,25 @@ class UserService
 		}
 	}
 	
-	public function update(){}
+	public function update($data, $id)
+	{
+		try {
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$user = $this->repository->update($data, $id);
+
+			return [
+				'success' => true,
+				'messages' => "Usuário alterado.",
+				'data' => $user,
+
+			];
+		} catch (Exception $e) {
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
 
 	public function destroy($id)
 	{

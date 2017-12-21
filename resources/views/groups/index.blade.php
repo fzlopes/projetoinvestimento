@@ -19,6 +19,6 @@
 		@include('templates.formulario.submit', ['input' => 'Cadastrar'])
 	{!! Form::close() !!}
 
-	@include('groups.list', ['groups' => $groups])
+	@include('groups.list', $groups)
 	
 @endsection

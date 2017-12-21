@@ -12,11 +12,9 @@
 		<h3>{{ session('success')['messages'] }}</h3>
 	@endif
 
-	{!! Form::open(['route' => 'user.store', 'method' => 'post', 'class' => 'form-padrao']) !!}
+	{!! Form::model($user, ['route' => ['user.update', $user->id], 'method' => 'put', 'class' => 'form-padrao']) !!}
 		@include('users.form-fields')
-		@include('templates.formulario.submit', ['input' => 'Cadastrar'])
+		@include('templates.formulario.submit', ['input' => 'Editar'])
 	{!! Form::close() !!}
 
-	@include('users.list', $users)
-	
 @endsection

@@ -24,6 +24,9 @@
 				<td>{{ $user->status }}</td>
 				<td>{{ $user->permission }}</td>
 				<td>
+				    <a href="{{ route('user.edit', $user->id)}}">Editar</a>
+				</td>
+				<td>
 					{!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE']) !!}
 					{!! Form::submit('Remover') !!}
 					{!! Form::close() !!}	
@@ -31,4 +34,4 @@
 			</tr>
 			@endforeach
 		</tbody>
-	</table>
+</table>
