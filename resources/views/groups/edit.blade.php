@@ -12,11 +12,9 @@
 		<h3>{{ session('success')['messages'] }}</h3>
 	@endif
 
-	{!! Form::open(['route' => 'group.store', 'method' => 'post', 'class' => 'form-padrao']) !!}
+	{!! Form::model($group, ['route' => ['group.update', $group->id], 'method' => 'put', 'class' => 'form-padrao']) !!}
 		@include('groups.form-fields')
-		@include('templates.formulario.submit', ['input' => 'Cadastrar'])
+		@include('templates.formulario.submit', ['input' => 'Editar'])
 	{!! Form::close() !!}
 
-	@include('groups.list', $groups)
-	
 @endsection

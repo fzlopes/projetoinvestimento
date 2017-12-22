@@ -64,7 +64,25 @@ class GroupService
 		}
 	}
 
-	public function update(){}
+	public function update($data, $id)
+	{
+		try {
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$group = $this->repository->update($data, $id);
+
+			return [
+				'success' => true,
+				'messages' => "Grupo Alterado.",
+				'data' => $group,
+
+			];
+		} catch (Exception $e) {
+			return [
+				'success' => false,
+				'messages' => $e->getMessage(),
+			];
+		}
+	}
 
 	public function destroy($id)
 	{

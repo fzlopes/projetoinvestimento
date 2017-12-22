@@ -16,6 +16,9 @@
 				<td>{{ $group->user->name }}</td>
 				<td>{{ $group->institution->name }}</td>
 				<td>
+					<a href="{{ route('group.edit', $group->id)}}">Editar</a>
+				</td>
+				<td>
 					{!! Form::open(['route' => ['group.destroy', $group->id], 'method' => 'DELETE']) !!}
 					{!! Form::submit('Remover') !!}
 					{!! Form::close() !!}	

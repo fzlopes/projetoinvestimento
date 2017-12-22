@@ -1,0 +1,3 @@
+@include('templates.formulario.input', ['label' => 'Nome do grupo', 'input' => 'name' , 'attributes' => ['placeholder' => 'Nome do grupo']])
+@include('templates.formulario.select', ['label' => 'Nome do Responsável', 'select' => 'user_id', 'data' => $users , 'attributes' => ['placeholder' => 'Nome do Responsável']])
+@include('templates.formulario.select', ['label' => 'Instituição', 'select' => 'institution_id', 'data' => $institutions , 'attributes' => ['placeholder' => 'Instituição']])
