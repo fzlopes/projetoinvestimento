@@ -12,6 +12,8 @@ class InstitutionValidator extends LaravelValidator
         ValidatorInterface::RULE_CREATE => [
         	'name'   => 'required',
         ],
-        ValidatorInterface::RULE_UPDATE => [],
+        ValidatorInterface::RULE_UPDATE => [
+        	'name'   => 'required',
+        ],
    ];
 }
