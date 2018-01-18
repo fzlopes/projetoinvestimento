@@ -24,7 +24,7 @@ class GroupsController extends Controller
     protected $repository;
 
     /**
-     * @var GroupValidator
+     * @var GroupService
      */
     protected $service;
 
@@ -83,7 +83,7 @@ class GroupsController extends Controller
         ]);
 
 
-        return redirect()->route('group.index');
+        return redirect()->route('groups.index');
         
     }
 
@@ -97,7 +97,7 @@ class GroupsController extends Controller
         ]);
 
 
-        return redirect()->route('group.show', [$group_id]);
+        return redirect()->route('groups.show', [$group_id]);
     }
 
 
@@ -155,7 +155,7 @@ class GroupsController extends Controller
         ]);
 
 
-        return redirect()->route('group.index');
+        return redirect()->route('groups.index');
     }
 
 
@@ -176,6 +176,6 @@ class GroupsController extends Controller
         ]);
 
 
-        return redirect()->route('group.index');
+        return redirect()->route('groups.index');
     }
 }

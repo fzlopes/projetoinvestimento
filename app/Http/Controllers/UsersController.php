@@ -64,7 +64,7 @@ class UsersController extends Controller
         ]);
 
 
-        return redirect()->route('user.index');
+        return redirect()->route('users.index');
         
     }
 
@@ -127,7 +127,7 @@ class UsersController extends Controller
         ]);
 
 
-        return redirect()->route('user.index');
+        return redirect()->route('users.index');
     }
 
 
@@ -148,6 +148,6 @@ class UsersController extends Controller
         ]);
 
 
-        return redirect()->route('user.index');
+        return redirect()->route('uses.index');
     }
 }

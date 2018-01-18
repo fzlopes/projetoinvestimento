@@ -23,6 +23,9 @@
 				<td>
 					<a href="{{ route('institution.show', $institution->id )}}">Detalhes</a>	
 				</td>
+				<td>
+					<a href="{{ route('institution.product.index', $institution->id )}}">Produtos</a>	
+				</td>
 			</tr>
 			@endforeach
 		</tbody>

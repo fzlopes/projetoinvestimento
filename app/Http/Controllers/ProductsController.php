@@ -11,6 +11,7 @@ use App\Http\Requests\ProductCreateRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Repositories\ProductRepository;
 use App\Validators\ProductValidator;
+use App\Entities\Institution;
 
 
 class ProductsController extends Controller
@@ -38,19 +39,12 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($institution_id)
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $products = $this->repository->all();
+        $products    = $this->repository->all();
+        $institution = Institution::find($institution_id); 
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $products,
-            ]);
-        }
-
-        return view('products.index', compact('products'));
+        return view('institutions.products.index', compact('institution'));
     }
 
     /**
@@ -60,34 +54,31 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductCreateRequest $request)
+    public function store(Request $request, $institution_id)
     {
+
+        //dd($request->all());
 
         try {
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $data = $request->all();
+            $data['institution_id'] = $institution_id;
+            //dd($data);
 
-            $product = $this->repository->create($request->all());
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $product = $this->repository->create($data);
 
-            $response = [
-                'message' => 'Product created.',
-                'data'    => $product->toArray(),
-            ];
+            session()->flash('success', [
+            'success'  => true,
+            'messages' => 'Produto cadastrado',
+            
+        ]);
 
-            if ($request->wantsJson()) {
 
-                return response()->json($response);
-            }
+        return redirect()->route('institution.product.index', $institution_id);
 
-            return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
+            
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
     }
