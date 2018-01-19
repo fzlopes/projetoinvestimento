@@ -17,5 +17,7 @@
 		@include('templates.formulario.submit', ['input' => 'Cadastrar'])
 	{!! Form::close() !!}
 
+	@include('institutions.products.list', $institution)
+
 		
 @endsection
