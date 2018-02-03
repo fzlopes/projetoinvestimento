@@ -13,6 +13,7 @@ use App\Repositories\MovimentRepository;
 use App\Validators\MovimentValidator;
 use App\Entities\Group;
 use App\Entities\Product;
+use Auth;
 
 class MovimentsController extends Controller
 {
@@ -35,7 +36,9 @@ class MovimentsController extends Controller
 
     public function application()
     {
-        $groups     = Group::all()->pluck('name', 'id');
+        $user = Auth::user();
+        
+        $groups     = $user->groups->pluck('name','id');
         $products   = Product::all()->pluck('name', 'id');
         
         return view('moviments.application', compact('groups', 'products'));
