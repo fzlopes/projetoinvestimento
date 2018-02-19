@@ -52,13 +52,13 @@ class MovimentsController extends Controller
             'group_id'   => $request->get('group_id'),
             'product_id' => $request->get('product_id'),
             'value'      => $request->get('value'),
-            'type'       => 1,
+            'type'       => 1
         ]);
 
        
-        session()->flash('success'), [
+        session()->flash('success', [
                 'success' => true,
-                'messages' => "Sua aplicação de " . $moviment->value . "no produto " . $moviment->product()->name . " foi realizada com sucesso",
+                'messages' => "Sua aplicação de " . $moviment->value . "no produto " . $moviment->product()->name . " foi realizada com sucesso"
 
         ]);
 

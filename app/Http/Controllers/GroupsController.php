@@ -83,7 +83,7 @@ class GroupsController extends Controller
         ]);
 
 
-        return redirect()->route('groups.index');
+        return redirect()->route('group.index');
         
     }
 
@@ -97,7 +97,7 @@ class GroupsController extends Controller
         ]);
 
 
-        return redirect()->route('groups.show', [$group_id]);
+        return redirect()->route('group.show', [$group_id]);
     }
 
 
@@ -155,7 +155,7 @@ class GroupsController extends Controller
         ]);
 
 
-        return redirect()->route('groups.index');
+        return redirect()->route('group.index');
     }
 
 
@@ -176,6 +176,6 @@ class GroupsController extends Controller
         ]);
 
 
-        return redirect()->route('groups.index');
+        return redirect()->route('group.index');
     }
 }

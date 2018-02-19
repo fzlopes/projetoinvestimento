@@ -6,7 +6,7 @@
 		<h3>{{ session('success')['messages'] }}</h3>
 	@endif
 	
-	{!! Form::open(['route' => 'moviments.application.store', 'method' => 'post', 'class' => 'form-padrao']) !!}
+	{!! Form::open(['route' => 'moviment.application.store', 'method' => 'post', 'class' => 'form-padrao']) !!}
 		@include('templates.formulario.select', ['label' => 'Grupo', 'select' => 'group_id', 'data' => $groups ?? [] , 'attributes' => ['placeholder' => 'Grupo']])
 		@include('templates.formulario.select', ['label' => 'Produto', 'select' => 'product_id', 'data' => $products ?? [] , 'attributes' => ['placeholder' => 'Produto']])
 		@include('templates.formulario.input', ['label' => 'Valor', 'input' => 'value' , 'attributes' => ['placeholder' => 'Valor']])
